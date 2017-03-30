@@ -1,0 +1,29 @@
+<h1>タスク一覧</h1>
+<%= link_to "新規作成", new_user_task_url(@user) %>
+<table>
+  <tr>
+    <th>優先度</th>
+    <th>タスク名</th>
+    <th>締め切り</th>
+    <th></th>
+  </tr>
+  <% @tasks.each do |task| %>
+    <tr>
+        <td><%= priority_name(task.priority) %></td>
+        <td><%= task.name %></td>
+        <td><%= task.deadline.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <td>
+          <%= link_to "編集", edit_user_task_url(@user, task) %>
+          <%= link_to "削除", user_task_url(@user, task), :method => 'delete',
+          data: {confirm: "本当に削除しますか?"} %>
+        </td>
+    </tr>
+  <% end %>
+</table>
+<%= form_tag user_tasks_url(@user), :method => :get do %>
+  <%= text_field_tag("name", @name) %>
+  <%= submit_tag("検索" ) %>
+<% end %>
+<!-- <%= link_to 'logout' %> -->
+
+<br />

@@ -1,0 +1,29 @@
+=begin
+class ImportError < StandardError; end
+class ProjectNotFoundError < ImportError; end
+
+raise ProjectNotFoundError, I18n.t('import_error.no_project_found', type: type, row: @reading_row)
+=end
+
+
+
+#これを
+
+
+=begin
+class ImportError < StandardError
+   def initialize(type: nil, row: nil)
+     @type = type
+     @row = row
+   end
+ end
+
+ class ProjectNotFoundError < ImportError
+   def message
+     I18n.t('import_error.no_project_found', type: @type, row: @row)
+   end
+ end
+
+ raise ProjectNotFoundError, type: type, row: @reading_row
+
+ =end
