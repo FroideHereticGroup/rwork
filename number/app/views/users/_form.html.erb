@@ -1,0 +1,33 @@
+<%= form_for(@user) do |t| %>
+	<div class="field">
+		<%= t.label :tel, '電話番号' %>
+		<%= t.text_field :tel %><br>
+	</div>
+	<div class="field">
+		<%= t.label :name, '名前' %>
+		<%= t.text_field :name %><br>
+	</div>
+	<div class="field">
+		<%= t.label :phonetic, 'フリガナ' %>
+		<%= t.text_field :phonetic %><br>
+	</div>
+	<div class="field">
+		<%= t.label :address, '住所' %>
+		<%= t.text_field :address %><br>
+	</div>
+	<div class="field">
+		<%= t.label :birthday, '誕生日' %>
+		<%= t.text_field :birthday %><br>
+	</div>
+	<%= t.submit %>
+	<% if @user.errors.any? %>
+		<div id="error_explanation">
+			<h2><%= @user.errors.count %>件のエラー発生</h2>
+			<ul>
+				<% @user.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+<% end %>
