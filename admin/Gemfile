@@ -33,6 +33,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'devise'
 
+gem 'carrierwave'
+gem 'rmagick'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
