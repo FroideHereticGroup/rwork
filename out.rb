@@ -39,4 +39,15 @@ ary.readlines do |line|
 end
 # 各要素を配列とする配列を取得する
 
+
+
 =end
+
+
+File.open("hello.txt") do |io|
+  # getcメソッドはioからデータを一文字だけ読み込む
+  p io.getc
+  # ungetcメソッドは引数で指定した文字をioの入力バッファに戻す
+  io.ungetc("h")
+  p io.gets
+end
