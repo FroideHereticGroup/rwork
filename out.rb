@@ -19,7 +19,7 @@ while line = io.gets
   .
   .
 end
-p io.eof?  # getメソッドが最後まで入力を読み込んでいればtrueが返える
+p io.eof?  # getsメソッドが最後まで入力を読み込んでいればtrueが返える
 
 # 上と同じ
 io.each_line do |line|
@@ -50,4 +50,27 @@ File.open("hello.txt") do |io|
   # ungetcメソッドは引数で指定した文字をioの入力バッファに戻す
   io.ungetc("h")
   p io.gets
+end
+
+# ファイルポインタposメソッド、seekメソッド
+File.open("sample.txt") do |line|
+  p line.read 5
+  p line.pos
+  line.seek(0, IO::SEEK_SET)
+  p line.gets
+end
+
+io = File.open("sample.txt")
+line = io.read
+line.each_line do |line|
+  line.chomp!
+  p line
+end
+
+#毎回File.openしないと読み込んでくれない
+io = File.open("sample.txt")
+line2 = io.gets
+line2.each_line do |line|
+  line.chomp!
+  p line
 end
