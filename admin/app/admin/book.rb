@@ -6,7 +6,9 @@ ActiveAdmin.register Book do
     id_column
     column :title, :sortable => true
     column :image, :sortable => true do |image|
-      image_tag image.image_url(:thumb)
+      if image.image.present?
+        image_tag image.image_url(:thumb)
+      end
     end
     column :content, :sortable => true
     column :updated_at
@@ -27,7 +29,9 @@ ActiveAdmin.register Book do
       row :id
       row :title
       row :image, option: {width: '75', height: '75'}, :sortable => true do |image|
-        image_tag image.image_url(:thumb)
+        if image.image.present?
+          image_tag image.image_url(:thumb)
+        end
       end
       row :content
       row :created_at
