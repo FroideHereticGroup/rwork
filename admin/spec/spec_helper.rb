@@ -11,6 +11,17 @@
 # a separate helper file that requires the additional dependencies and performs
 # the additional setup, and require it from the spec files that actually need
 # it.
+require 'factory_girl_rails'
+require 'simplecov'
+
+SimpleCov.merge_timeout 3600
+SimpleCov.start do
+  add_filter "/vendor/"
+  add_filter "/config/"
+  add_filter "/lib/"
+  add_filter "/spec/"
+end
+
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
@@ -93,4 +104,17 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
+  end
+  
+  Dir.glob(File.join(File.dirname(__FILE__), "../src/**/*.rb")).each { |f| require f }
 end
