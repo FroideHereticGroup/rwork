@@ -44,7 +44,6 @@ RSpec.describe Admin::BooksController, type: :controller do
 
     context '登録した値に関して' do
       let(:book) { Book.where('title = ?', title) }
-      
       it 'DBに登録した件数と一致すること' do
         expect(book.count).to eq 1
         expect(book[0].title).to eq title
@@ -96,8 +95,7 @@ RSpec.describe Admin::BooksController, type: :controller do
         },
         controller: 'books',
         action: 'update',
-        id: '11111',
-        key: '11111'
+        id: '11111'
       }
     end
 
