@@ -7,6 +7,7 @@ end
 Dir.chdir("tmp/lang") # ディレクトリ移動
 Dir.new(".").each do |entry|    # . は現在の作業ディレクトリを指す
   # Dir.new(".")は 「., .., python, ruby」を指すFile.openを同じでカレントディレクトリを開く
+  # ls -a で調べることができる
   filename = File.join(entry, "rocking.rb")
   puts filename
   Dir.pwd
