@@ -7,4 +7,5 @@ class User < ApplicationRecord
 
   # password_digest属性とGemfileにbcryptを追加すると使える
   has_secure_password
+  validates :password, presence: true, length: { minimum: 6 }
 end
